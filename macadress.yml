@@ -1,0 +1,19 @@
+---
+
+- name: Backup Switches Paquetá
+  connection: network_cli
+  gather_facts: false
+  hosts: teste
+  tasks:
+
+    - name: Run cli_command on Cisco IOS and display results
+      block:
+      - name: Run cli_command on Cisco IOS
+        cli_command:
+          command: sh mac address-table address 00:80:64:FE:D6:B1
+        register: result
+
+      - name: Display result to terminal window
+        debug:
+          var: result.stdout_lines
+                
